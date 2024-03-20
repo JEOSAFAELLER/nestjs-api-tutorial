@@ -7,7 +7,7 @@ export class PrismaService extends PrismaClient{
         super({
             datasources:{
                 db:{
-                    url: "sqlserver://localhost:1433;database=nestjs-api-tutorial;integratedSecurity=true;trustServerCertificate=true;"
+                    url: "mysql://JEOSAFA:061284@localhost:3306/nestjs-api-tutorial"
                 },
             },
         });

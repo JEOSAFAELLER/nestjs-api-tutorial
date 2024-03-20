@@ -9,7 +9,7 @@ generator client {
 }
 
 datasource db {
-  provider = "sqlserver"
+  provider = "mysql"
   url      = env("DATABASE_URL")
 }
 
@@ -17,10 +17,13 @@ model User {
   id        Int      @id @default(autoincrement())
   cratedAt  DateTime @default(now())
   updateAt  DateTime @updatedAt
-  email     String
+  email     String @unique
   hash      String
   firstName String?
   lastName  String?
+
+  @@map("users")
+  bookmarks Bookmark[]
 }
 
 model Bookmark {
@@ -31,4 +34,9 @@ model Bookmark {
   title       String
   description String?
   link        String
+
+  userId Int
+  user   User @relation(fields: [userId], references: [id])
+
+  @@map("bookmarks")
 }
