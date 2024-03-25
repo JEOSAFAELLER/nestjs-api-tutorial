@@ -1,6 +1,8 @@
 import { Body, Controller, Post } from "@nestjs/common";
 import { AuthService } from "./auth.service";
 import { AuthDto } from "src/dto";
+import { Request } from 'express'
+import { request } from "http";
 
 //o caminho para o controlador é /auth
 @Controller('auth')
@@ -16,6 +18,7 @@ signup(@Body() dto:AuthDto){
 
 @Post('signin')
 signin(@Body() dto:AuthDto){
+    
     return this.authService.signin(dto);
 }
 
